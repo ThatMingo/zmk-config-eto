@@ -9,7 +9,6 @@ config SPI
 config SSD16XX
     default y
 
-CONFIG_LV_COLOR_CHROMA_KEY_HEX
-    default 0xFF0000
+CONFIG_LV_COLOR_CHROMA_KEY_HEX=0xFF0000
 
 endif # SHIELD_ETO
