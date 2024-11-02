@@ -6,7 +6,7 @@ config ZMK_KEYBOARD_NAME
 config SPI
     default y
 
-config SSD16xx
+config SSD16XX
     default y
 
 endif # SHIELD_ETO
