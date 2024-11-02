@@ -1,0 +1,12 @@
+if SHIELD_ETO
+
+config ZMK_KEYBOARD_NAME
+    default "eto"
+
+config SPI
+    default y
+
+config SSD16xx
+    default y
+
+endif # SHIELD_ETO

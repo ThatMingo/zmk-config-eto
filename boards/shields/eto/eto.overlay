@@ -1,0 +1,49 @@
+
+#include "eto-layouts.dtsi"
+
+/ {
+    chosen {
+        zmk,kscan = &kscan;
+        zephyr,display = &display0;
+    };
+
+    kscan: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+        input-gpios
+            = <&pro_micro 19 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+             <&pro_micro 18 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
+
+    encoder0: encoder0 {
+        status = "okay";
+        compatible = "alps,ec11";
+        a-gpios = <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <80>;
+    }
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&encoder0>;
+        triggers-per-rotation = <20>;
+    };
+
+};
+
+ &spi0 {
+    
+    status = "okay";
+
+    display0: display@0 {
+        status = "okay";
+        reg = <0>;
+        width = <250>;
+        height = <122>;
+        spi-max-frequency = <4000000>;
+        reset-gpios = <&pro_micro 2 GPIO_ACTIVE_LOW>;
+        dc-gpios = <&pro_micro 3 GPIO_ACTIVE_LOW>;
+        busy-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>;
+            
+    };
+};
