@@ -1,7 +1,3 @@
-if(CONFIG_ZMK_DISPLAY)
-  # Add your custom status screen source file
-  zephyr_library_sources_ifdef(CONFIG_ZMK_DISPLAY custom_status_screen.c)
-endif()
 
 zephyr_library()
 
