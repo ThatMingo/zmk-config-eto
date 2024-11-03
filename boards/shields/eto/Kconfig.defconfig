@@ -9,7 +9,8 @@ config SPI
 config SSD16XX
     default y
 
-config ZMK_DISPLAY
+
+config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
     select LV_USE_CONT
     select LV_FONT_MONTSERRAT_26
     select LV_FONT_MONTSERRAT_16
@@ -37,9 +38,7 @@ choice ZMK_DISPLAY_WORK_QUEUE
     default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
 endchoice
 
-choice ZMK_DISPLAY_STATUS_SCREEN
-    default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
-endchoice
+
 
 
 
