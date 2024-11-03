@@ -59,7 +59,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
     init_line_dsc(&line_dsc, LVGL_FOREGROUND, 1);
 
     // Fill background
-    lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
+    lv_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
 
     // Draw battery
     draw_battery(canvas, state);
@@ -84,15 +84,15 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
         break;
     }
 
-    lv_canvas_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc, output_text);
+    lv_draw_text(canvas, 0, 0, CANVAS_SIZE, &label_dsc, output_text);
 
     // Draw WPM
-    lv_canvas_draw_rect(canvas, 0, 21, 68, 42, &rect_white_dsc);
-    lv_canvas_draw_rect(canvas, 1, 22, 66, 40, &rect_black_dsc);
+    lv_draw_rect(canvas, 0, 21, 68, 42, &rect_white_dsc);
+    lv_draw_rect(canvas, 1, 22, 66, 40, &rect_black_dsc);
 
     char wpm_text[6] = {};
     snprintf(wpm_text, sizeof(wpm_text), "%d", state->wpm[9]);
-    lv_canvas_draw_text(canvas, 42, 52, 24, &label_dsc_wpm, wpm_text);
+    lv_draw_text(canvas, 42, 52, 24, &label_dsc_wpm, wpm_text);
 
     int max = 0;
     int min = 256;
@@ -116,7 +116,7 @@ static void draw_top(lv_obj_t *widget, lv_color_t cbuf[], const struct status_st
         points[i].x = 2 + i * 7;
         points[i].y = 60 - (state->wpm[i] - min) * 36 / range;
     }
-    lv_canvas_draw_line(canvas, points, 10, &line_dsc);
+    lv_draw_line(canvas, points, 10, &line_dsc);
 
     // Rotate canvas
     rotate_canvas(canvas, cbuf);
@@ -134,12 +134,12 @@ static void draw_middle(lv_obj_t *widget, lv_color_t cbuf[], const struct status
     lv_draw_arc_dsc_t arc_dsc_filled;
     init_arc_dsc(&arc_dsc_filled, LVGL_FOREGROUND, 9);
     lv_draw_label_dsc_t label_dsc;
-    init_label_dsc(&label_dsc, LVGL_FOREGROUND, &lv_font_montserrat_18, LV_TEXT_ALIGN_CENTER);
+    init_label_dsc(&label_dsc, LVGL_FOREGROUND, &lv_font_montserrat_16, LV_TEXT_ALIGN_CENTER);
     lv_draw_label_dsc_t label_dsc_black;
-    init_label_dsc(&label_dsc_black, LVGL_BACKGROUND, &lv_font_montserrat_18, LV_TEXT_ALIGN_CENTER);
+    init_label_dsc(&label_dsc_black, LVGL_BACKGROUND, &lv_font_montserrat_16, LV_TEXT_ALIGN_CENTER);
 
     // Fill background
-    lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
+    lv_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
 
     // Draw circles
     int circle_offsets[5][2] = {
@@ -149,17 +149,17 @@ static void draw_middle(lv_obj_t *widget, lv_color_t cbuf[], const struct status
     for (int i = 0; i < 5; i++) {
         bool selected = i == state->active_profile_index;
 
-        lv_canvas_draw_arc(canvas, circle_offsets[i][0], circle_offsets[i][1], 13, 0, 360,
+        lv_draw_arc(canvas, circle_offsets[i][0], circle_offsets[i][1], 13, 0, 360,
                            &arc_dsc);
 
         if (selected) {
-            lv_canvas_draw_arc(canvas, circle_offsets[i][0], circle_offsets[i][1], 9, 0, 359,
+            lv_draw_arc(canvas, circle_offsets[i][0], circle_offsets[i][1], 9, 0, 359,
                                &arc_dsc_filled);
         }
 
         char label[2];
         snprintf(label, sizeof(label), "%d", i + 1);
-        lv_canvas_draw_text(canvas, circle_offsets[i][0] - 8, circle_offsets[i][1] - 10, 16,
+        lv_draw_text(canvas, circle_offsets[i][0] - 8, circle_offsets[i][1] - 10, 16,
                             (selected ? &label_dsc_black : &label_dsc), label);
     }
 
@@ -176,7 +176,7 @@ static void draw_bottom(lv_obj_t *widget, lv_color_t cbuf[], const struct status
     init_label_dsc(&label_dsc, LVGL_FOREGROUND, &lv_font_montserrat_14, LV_TEXT_ALIGN_CENTER);
 
     // Fill background
-    lv_canvas_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
+    lv_draw_rect(canvas, 0, 0, CANVAS_SIZE, CANVAS_SIZE, &rect_black_dsc);
 
     // Draw layer
     if (state->layer_label == NULL || strlen(state->layer_label) == 0) {
@@ -184,9 +184,9 @@ static void draw_bottom(lv_obj_t *widget, lv_color_t cbuf[], const struct status
 
         sprintf(text, "LAYER %i", state->layer_index);
 
-        lv_canvas_draw_text(canvas, 0, 5, 68, &label_dsc, text);
+        lv_draw_text(canvas, 0, 5, 68, &label_dsc, text);
     } else {
-        lv_canvas_draw_text(canvas, 0, 5, 68, &label_dsc, state->layer_label);
+        lv_draw_text(canvas, 0, 5, 68, &label_dsc, state->layer_label);
     }
 
     // Rotate canvas
