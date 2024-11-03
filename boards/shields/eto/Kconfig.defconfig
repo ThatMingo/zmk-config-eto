@@ -9,6 +9,38 @@ config SPI
 config SSD16XX
     default y
 
-CONFIG_LV_COLOR_CHROMA_KEY_HEX=0xFF0000
+config ZMK_DISPLAY
+    select LV_USE_CONT
+    select LV_FONT_MONTSERRAT_26
+    select LV_FONT_MONTSERRAT_16
+    select LV_USE_LABEL
+
+config ZMK_DISPLAY_BLANK_ON_IDLE
+    default n
+
+config LV_Z_VDB_SIZE
+    default 100
+
+config LV_DPI_DEF
+    default 130
+
+CONFIG_LV_Z_MEM_POOL_SIZE
+    default 20480
+
+HEAP_MEM_POOL_SIZE
+    default 8192
+
+config LV_Z_BITS_PER_PIXEL
+    default 1
+
+choice ZMK_DISPLAY_WORK_QUEUE
+    default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
+endchoice
+
+choice ZMK_DISPLAY_STATUS_SCREEN
+    default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+endchoice
+
+
 
 endif # SHIELD_ETO
