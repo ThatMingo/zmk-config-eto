@@ -7,9 +7,18 @@
 
 #include "custom_status_screen.h"
 #include <zephyr/logging/log.h>
-#include <lvgl.h>
+#include <lvgl/lvgl.h> // Make sure to include the lvgl header for colors
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
+
+// Define colors if not already defined
+#ifndef LV_COLOR_BLACK
+#define LV_COLOR_BLACK lv_color_make(0, 0, 0)
+#endif
+
+#ifndef LV_COLOR_RED
+#define LV_COLOR_RED lv_color_make(255, 0, 0)
+#endif
 
 // Define styles for text
 static lv_style_t black_style;
