@@ -5,19 +5,10 @@
  *
  */
 
-#include "custom_status_screen.h"
 #include <zephyr/logging/log.h>
 
+
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
-
-// Define colors if not already defined
-#ifndef LV_COLOR_BLACK
-#define LV_COLOR_BLACK lv_color_make(0, 0, 0)
-#endif
-
-#ifndef LV_COLOR_RED
-#define LV_COLOR_RED lv_color_make(255, 0, 0)
-#endif
 
 // Define styles for text
 static lv_style_t black_style;
@@ -25,10 +16,10 @@ static lv_style_t red_style;
 
 void init_styles() {
     lv_style_init(&black_style);
-    lv_style_set_text_color(&black_style, LV_STATE_DEFAULT, LV_COLOR_BLACK);
+    lv_style_set_text_color(&black_style, LV_STATE_DEFAULT, lv_color_make(0, 0, 0)); // Black color
 
     lv_style_init(&red_style);
-    lv_style_set_text_color(&red_style, LV_STATE_DEFAULT, LV_COLOR_RED);
+    lv_style_set_text_color(&red_style, LV_STATE_DEFAULT, lv_color_make(255, 0, 0)); // Red color
 }
 
 lv_obj_t *zmk_display_status_screen() {
