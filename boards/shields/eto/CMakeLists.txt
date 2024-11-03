@@ -1,10 +1,6 @@
-
-zephyr_library()
-
-# Include directories for LVGL and other dependencies
-zephyr_library_include_directories(${ZEPHYR_LVGL_MODULE_DIR})
-zephyr_library_include_directories(${ZEPHYR_BASE}/lib/gui/lvgl/)
-zephyr_library_sources_ifdef(CONFIG_ZMK_DISPLAY custom_status_screen.c)
-zephyr_library_sources(${ZEPHYR_BASE}/misc/empty_file.c)
 zephyr_library_include_directories(${CMAKE_SOURCE_DIR}/include)
-zephyr_library_include_directories(${ZEPHYR_BASE}/drivers)
+zephyr_library_sources(custom_status_screen.c)
+zephyr_library_sources(widgets/bolt.c)
+zephyr_library_sources(widgets/util.c)
+zephyr_library_sources(widgets/status.c)
+zephyr_library_sources(widgets/art.c)

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "split_peripheral_status_changed.h": "c",
+        "status.h": "c"
+    }
+}

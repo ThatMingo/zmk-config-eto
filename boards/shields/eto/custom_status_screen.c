@@ -4,20 +4,20 @@
  * SPDX-License-Identifier: MIT
  *
  */
-
+#include "widgets/status.h"
 #include <zephyr/logging/log.h>
 #include "custom_status_screen.h"
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
+static struct zmk_widget_status status_widget;
+
 lv_obj_t *zmk_display_status_screen() {
     lv_obj_t *screen;
     screen = lv_obj_create(NULL);
 
-    // Create a label for "Hello World"
-    lv_obj_t *label = lv_label_create(screen); // Create label
-    lv_label_set_text(label, "Hello World");   // Set label text
-    lv_obj_align(label, LV_ALIGN_CENTER, 0, 0); // Center the label correctly
+   zmk_widget_status_init(&status_widget, screen);
+    lv_obj_align(zmk_widget_status_obj(&status_widget), LV_ALIGN_TOP_LEFT, 0, 0);
 
     return screen;
 }
