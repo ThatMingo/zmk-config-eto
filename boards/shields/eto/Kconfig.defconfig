@@ -6,6 +6,9 @@ config ZMK_KEYBOARD_NAME
 config SPI
     default y
 
+config LVGL
+    default y
+
 config SSD16XX
     default y
 
