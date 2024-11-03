@@ -24,10 +24,10 @@ config LV_Z_VDB_SIZE
 config LV_DPI_DEF
     default 130
 
-CONFIG_LV_Z_MEM_POOL_SIZE
+config LV_Z_MEM_POOL_SIZE
     default 20480
 
-HEAP_MEM_POOL_SIZE
+config HEAP_MEM_POOL_SIZE
     default 8192
 
 config LV_Z_BITS_PER_PIXEL
