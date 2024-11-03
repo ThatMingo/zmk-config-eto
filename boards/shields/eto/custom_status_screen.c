@@ -11,7 +11,8 @@
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 lv_obj_t *zmk_display_status_screen() {
-    lv_obj_t *screen = lv_obj_create(NULL);
+    lv_obj_t *screen;
+    screen = lv_obj_create(NULL);
 
     // Create a label for "Hello World"
     lv_obj_t *label = lv_label_create(screen); // Create label
