@@ -10,16 +10,30 @@ config SSD16XX
     default y
 
 
-config ZMK_DISPLAY
-	select LV_USE_CONT
-	select LV_FONT_MONTSERRAT_26
-	select LV_FONT_MONTSERRAT_20
-	select LV_FONT_MONTSERRAT_16
-	select LV_USE_LABEL
-	select LV_USE_IMG
-
 choice ZMK_DISPLAY_STATUS_SCREEN
     default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+endchoice
+
+config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+    select LV_USE_LABEL
+    select LV_USE_IMG
+    select LV_USE_CANVAS
+    select LV_USE_ANIMIMG 
+    select LV_USE_ANIMATION
+    select LV_USE_LINE 
+    select LV_FONT_UNSCII_8
+    select ZMK_WPM
+    imply ZMK_HID_INDICATORS
+
+config ZMK_DONGLE_DISPLAY_DONGLE_BATTERY
+    bool "Show also the battery level of the dongle"
+    depends on BT && (!ZMK_SPLIT_BLE || ZMK_SPLIT_ROLE_CENTRAL)
+
+config ZMK_DONGLE_DISPLAY_MAC_MODIFIERS
+    bool "Use MacOS modifier symbols instead of the Windows symbols"
+
+choice ZMK_DISPLAY_WORK_QUEUE
+    default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
 endchoice
 
 config ZMK_DISPLAY_BLANK_ON_IDLE
@@ -39,24 +53,5 @@ config HEAP_MEM_POOL_SIZE
 
 config LV_Z_BITS_PER_PIXEL
     default 1
-
-choice ZMK_DISPLAY_WORK_QUEUE
-    default ZMK_DISPLAY_WORK_QUEUE_DEDICATED
-endchoice
-
-
-menuconfig CUSTOM_WIDGET_BATTERY_STATUS
-	bool "custom battery status widget"
-
-menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
-	bool "custom output status widget"
-
-menuconfig CUSTOM_WIDGET_LAYER_STATUS
-	bool "custom layer status widget"
-
-menuconfig CUSTOM_WIDGET_PERIPHERAL_STATUS
-	bool "custom peripheral status widget"
-
-
 
 endif # SHIELD_ETO
