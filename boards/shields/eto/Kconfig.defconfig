@@ -9,17 +9,18 @@ config SPI
 config SSD16XX
     default y
 
+
+config ZMK_DISPLAY
+	select LV_USE_CONT
+	select LV_FONT_MONTSERRAT_26
+	select LV_FONT_MONTSERRAT_20
+	select LV_FONT_MONTSERRAT_16
+	select LV_USE_LABEL
+	select LV_USE_IMG
+
 choice ZMK_DISPLAY_STATUS_SCREEN
     default ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
 endchoice
-
-config ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
-    select LV_USE_CONT
-    select LV_FONT_MONTSERRAT_26
-    select LV_FONT_MONTSERRAT_16
-    select LV_USE_LABEL
-    select LV_USE_IMG
-    imply NICE_VIEW_WIDGET_STATUS
 
 config ZMK_DISPLAY_BLANK_ON_IDLE
     default n
@@ -44,10 +45,17 @@ choice ZMK_DISPLAY_WORK_QUEUE
 endchoice
 
 
-config NICE_VIEW_WIDGET_INVERTED
-    bool "Invert custom status widget colors"
+menuconfig CUSTOM_WIDGET_BATTERY_STATUS
+	bool "custom battery status widget"
 
+menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
+	bool "custom output status widget"
 
+menuconfig CUSTOM_WIDGET_LAYER_STATUS
+	bool "custom layer status widget"
+
+menuconfig CUSTOM_WIDGET_PERIPHERAL_STATUS
+	bool "custom peripheral status widget"
 
 
 
