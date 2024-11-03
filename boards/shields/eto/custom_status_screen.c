@@ -1,5 +1,5 @@
 #include <lvgl.h>
-#include <zmk/display/status_screen.h>
+
 
 lv_obj_t *zmk_display_status_screen() {
     lv_obj_t *screen = lv_obj_create(NULL);
