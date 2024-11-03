@@ -1,7 +1,7 @@
 #ifndef CUSTOM_STATUS_SCREEN_H
 #define CUSTOM_STATUS_SCREEN_H
 
-#include <lvgl/lvgl.h>
+#include <lvgl.h>
 
 lv_obj_t *zmk_display_status_screen();
 
